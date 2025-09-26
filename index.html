@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Beer Order Totem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Festival Beer Totem</h1>
+
+        <div class="products-section">
+            <h2>Our Beers</h2>
+            <div id="product-list" class="product-list">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+
+        <div class="order-section">
+            <h2>Your Order</h2>
+            <ul id="order-summary" class="order-summary">
+                <!-- Order items will appear here -->
+            </ul>
+            <div class="total-section">
+                <span>Total:</span>
+                <span id="order-total">€0.00</span>
+            </div>
+            <div class="payment-section">
+                <h3>Payment Method</h3>
+                <div id="payment-method-buttons">
+                    <button class="payment-btn" data-method="Cash">Cash</button>
+                    <button class="payment-btn" data-method="Card">Card</button>
+                    <button class="payment-btn" data-method="Mobile Pay">Mobile Pay</button>
+                </div>
+                <button id="place-order-btn">Place Order</button> <!-- 🔥 aggiunto -->
+            </div>
+        </div>
+
+        <div class="history-section">
+            <h2>Purchase History</h2>
+            <ul id="purchase-history" class="purchase-history">
+                <!-- Purchase history will be loaded here -->
+            </ul>
+            <button id="clear-history-btn">Clear History</button>
+            <button id="export-csv-btn">Export CSV</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

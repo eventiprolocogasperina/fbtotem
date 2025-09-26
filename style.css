@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+h1 {
+    text-align: center;
+    color: #a0522d; /* Sienna-like color for festival feel */
+    grid-column: 1 / -1; /* Spans across both columns */
+}
+
+h2, h3 {
+    color: #5a2d0f;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+.products-section, .order-section, .history-section {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.product-item:hover {
+    background-color: #ffe0b2; /* Lighter orange/brown on hover */
+    border-color: #ffb74d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.product-item img {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+.product-item h4 {
+    margin: 5px 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.product-item p {
+    font-size: 0.9em;
+    color: #777;
+    margin: 0;
+}
+
+.order-summary {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.order-summary li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.order-summary li:last-child {
+    border-bottom: none;
+}
+
+.total-section {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #a0522d;
+}
+
+.payment-section {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.payment-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.payment-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.2s ease;
+}
+
+.payment-btn:hover {
+    background-color: #ffe0b2;
+    border-color: #ffb74d;
+}
+
+.payment-btn.active {
+    background-color: #007bff; /* Blue when selected */
+    color: white;
+    border-color: #0056b3;
+}
+
+/* Place Order button */
+#place-order-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+#place-order-btn:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.history-section {
+    grid-column: 1 / -1; /* Spans across both columns */
+}
+
+.purchase-history {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.purchase-history li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.purchase-history li strong {
+    color: #a0522d;
+}
+
+#clear-history-btn {
+    background-color: #dc3545; /* Red for clear button */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    float: right;
+    margin-top: 10px;
+}
+
+#clear-history-btn:hover {
+    background-color: #c82333;
+}
+
+/* 📱 Responsive for phones */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .payment-btn,
+    #place-order-btn,
+    .order-summary li span button {
+        font-size: 1.1em;
+        padding: 14px;
+    }
+}
