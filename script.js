@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const purchaseHistoryUl = document.getElementById('purchase-history');
     const clearHistoryBtn = document.getElementById('clear-history-btn');
 
-    // --- Product List Rendering ---
+    // --- Rendering Prodotti ---
     function renderProducts() {
         productListDiv.innerHTML = '';
         products.forEach(product => {
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Order Management ---
+    // --- Gestione Ordine ---
     function addProductToOrder(product) {
         const existingItem = currentOrder.find(item => item.id === product.id);
         if (existingItem) {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let total = 0;
 
         if (currentOrder.length === 0) {
-            orderSummaryUl.innerHTML = '<li class="empty-order">No items in your order yet.</li>';
+            orderSummaryUl.innerHTML = '<li class="empty-order">Nessun articolo nel tuo ordine.</li>';
         } else {
             currentOrder.forEach(item => {
                 const li = document.createElement('li');
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         orderTotalSpan.textContent = `€${total.toFixed(2)}`;
 
-        // Event listeners per +, -, X
+        // Eventi per +, -, X
         document.querySelectorAll('.increase-btn').forEach(button => {
             button.addEventListener('click', (event) => {
                 const product = currentOrder.find(p => p.id === event.target.dataset.id);
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Payment Method Selection (static buttons) ---
+    // --- Metodo di Pagamento ---
     document.querySelectorAll('.payment-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('active'));
@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Purchase and History ---
+    // --- Conferma Ordine ---
     placeOrderBtn.addEventListener('click', () => {
         if (currentOrder.length === 0) {
-            alert('Ordine vuoto!');
+            alert('Il tuo ordine è vuoto!');
             return;
         }
 
@@ -124,15 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const total = parseFloat(orderTotalSpan.textContent.replace('€', ''));
-        let message = `Riepilogo ordine\nTotale €${total.toFixed(2)}\nMetodo di Pagamento: ${selectedPaymentMethod}`;
+        let message = `Riepilogo ordine\nTotale: €${total.toFixed(2)}\nPagamento: ${selectedPaymentMethod}`;
 
         if (selectedPaymentMethod === 'Contanti') {
-            const amountGiven = parseFloat(prompt(`Il totale è €${total.toFixed(2)}.\nQuanto ti ha dato il cliente:`));
+            const amountGiven = parseFloat(prompt(`Il totale è €${total.toFixed(2)}.\nInserisci quanto ha dato il cliente:`));
             if (!isNaN(amountGiven) && amountGiven >= total) {
                 const change = amountGiven - total;
-                message += `\nDati: €${amountGiven.toFixed(2)}\nResto: €${change.toFixed(2)}`;
+                message += `\nImporto ricevuto: €${amountGiven.toFixed(2)}\nResto: €${change.toFixed(2)}`;
             } else {
-                alert('Importo non valido. Ordine cancellato.');
+                alert('Importo non valido. Ordine annullato.');
                 return;
             }
         }
@@ -161,11 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function exportHistoryToCSV() {
         const history = JSON.parse(localStorage.getItem('purchaseHistory') || '[]');
         if (history.length === 0) {
-            alert("No purchase history to export.");
+            alert("Nessuna cronologia acquisti da esportare.");
             return;
         }
 
-        let csv = "Timestamp,Items,Total,Payment Method\n";
+        let csv = "Data e Ora,Articoli,Totale,Metodo di Pagamento\n";
         history.forEach(p => {
             let items = p.items.map(i => `${i.name} (x${i.quantity})`).join(" | ");
             csv += `"${p.timestamp}","${items}",${p.total.toFixed(2)},${p.paymentMethod}\n`;
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const a = document.createElement("a");
         a.href = url;
-        a.download = "purchase_history.csv";
+        a.download = "cronologia_acquisti.csv";
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -190,15 +190,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const history = JSON.parse(localStorage.getItem('purchaseHistory') || '[]');
 
         if (history.length === 0) {
-            purchaseHistoryUl.innerHTML = '<li class="empty-history">No past purchases.</li>';
+            purchaseHistoryUl.innerHTML = '<li class="empty-history">Nessun acquisto precedente.</li>';
         } else {
             history.forEach(purchase => {
                 const li = document.createElement('li');
                 let itemsList = purchase.items.map(item => `${item.name} (x${item.quantity})`).join(', ');
                 li.innerHTML = `
                     <strong>${purchase.timestamp}</strong><br>
-                    Items: ${itemsList}<br>
-                    Total: €${purchase.total.toFixed(2)} (${purchase.paymentMethod})
+                    Articoli: ${itemsList}<br>
+                    Totale: €${purchase.total.toFixed(2)} (${purchase.paymentMethod})
                 `;
                 purchaseHistoryUl.appendChild(li);
             });
@@ -206,13 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     clearHistoryBtn.addEventListener('click', () => {
-        if (confirm('Are you sure you want to clear all purchase history?')) {
+        if (confirm('Vuoi davvero cancellare tutta la cronologia acquisti?')) {
             localStorage.removeItem('purchaseHistory');
             renderPurchaseHistory();
         }
     });
 
-    // --- Initial Load ---
+    // --- Inizializzazione ---
     renderProducts();
     renderOrderSummary();
     renderPurchaseHistory();
