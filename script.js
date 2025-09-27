@@ -114,25 +114,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Purchase and History ---
     placeOrderBtn.addEventListener('click', () => {
         if (currentOrder.length === 0) {
-            alert('Your order is empty!');
+            alert('Ordine vuoto!');
             return;
         }
 
         if (!selectedPaymentMethod) {
-            alert('Please select a payment method!');
+            alert('Seleziona un metodo di pagamento!');
             return;
         }
 
         const total = parseFloat(orderTotalSpan.textContent.replace('€', ''));
-        let message = `Order placed successfully!\nTotal: €${total.toFixed(2)}\nPayment: ${selectedPaymentMethod}`;
+        let message = `Riepilogo ordine\nTotale €${total.toFixed(2)}\nMetodo di Pagamento: ${selectedPaymentMethod}`;
 
-        if (selectedPaymentMethod === 'Cash') {
-            const amountGiven = parseFloat(prompt(`Total is €${total.toFixed(2)}.\nEnter amount given by customer:`));
+        if (selectedPaymentMethod === 'Contanti') {
+            const amountGiven = parseFloat(prompt(`Il totale è €${total.toFixed(2)}.\nQuanto ti ha dato il cliente:`));
             if (!isNaN(amountGiven) && amountGiven >= total) {
                 const change = amountGiven - total;
-                message += `\nGiven: €${amountGiven.toFixed(2)}\nChange: €${change.toFixed(2)}`;
+                message += `\nDati: €${amountGiven.toFixed(2)}\nResto: €${change.toFixed(2)}`;
             } else {
-                alert('Invalid amount entered. Order cancelled.');
+                alert('Importo non valido. Ordine cancellato.');
                 return;
             }
         }
