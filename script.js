@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const products = [
-        { id: 'Birra', name: 'Birra Apostel', price: 4.00, img: 'imgs/Apostel_Logo.png' },
-        { id: 'Gladium', name: 'Birra Gladium', price: 5.00, img: 'imgs/gladium.png' },
+        { id: 'Birra', name: 'Birra Apostel', price: 3.00, img: 'imgs/Apostel_Logo.png' },
+        { id: 'Gladium', name: 'Birra Gladium', price: 4.00, img: 'imgs/gladium.png' },
         { id: 'Cocacola', name: 'Cocacola', price: 2.00, img: 'imgs/Coca-Cola.png' },
         { id: 'Cocacola Zero', name: 'Cocacola Zero', price: 2.00, img: 'imgs/cc_zero.png' },
         { id: 'Acqua', name: 'Acqua', price: 1.00, img: 'imgs/wat.png' },
         { id: 'Graffa', name: 'Graffa', price: 3.00, img: 'imgs/graffa.png' },
         { id: 'Pretzel', name: 'Pretzel', price: 2.00, img: 'imgs/pretzel.png' },
-        { id: 'Castagne', name: 'Castagne', price: 2.00, img: 'imgs/cast.png' },
+        { id: 'Castagne', name: 'Castagne', price: 4.00, img: 'imgs/cast.png' },
     ];
 
     let currentOrder = [];
